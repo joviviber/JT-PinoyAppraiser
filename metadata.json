@@ -1,0 +1,5 @@
+{
+  "name": "Pinoy Appraiser - Google AI Studio",
+  "description": "AI-powered real estate valuation tool specifically designed for the Philippine market. Instantly estimate property values using advanced Gemini AI.",
+  "requestFramePermissions": []
+}
