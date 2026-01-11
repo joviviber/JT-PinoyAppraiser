@@ -32,9 +32,8 @@ function App() {
   };
 
   const handleReset = () => {
-    setResult(null);
-    setInputData(null);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Reload the application from the base URL to ensure a complete reset
+    window.location.href = import.meta.env.BASE_URL;
   };
 
   return (

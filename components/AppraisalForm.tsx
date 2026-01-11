@@ -12,21 +12,51 @@ export const AppraisalForm: React.FC<AppraisalFormProps> = ({ onSuccess, setLoad
     city: "",
     buildingName: "",
     propertyType: PROPERTY_TYPES[0],
-    sizeSqm: 50,
+    sizeSqm: 0,
     bedrooms: 0,
     bathrooms: 0
   });
+
+  // Simple Math Captcha State
+  const [captcha, setCaptcha] = useState(() => ({
+    num1: Math.floor(Math.random() * 10) + 1,
+    num2: Math.floor(Math.random() * 10) + 1
+  }));
+  const [captchaAnswer, setCaptchaAnswer] = useState("");
 
   const handleChange = (field: keyof PropertyDetails, value: string | number) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
+  const regenerateCaptcha = () => {
+    setCaptcha({
+      num1: Math.floor(Math.random() * 10) + 1,
+      num2: Math.floor(Math.random() * 10) + 1
+    });
+    setCaptchaAnswer("");
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // 1. Validate Human
+    const expectedAnswer = captcha.num1 + captcha.num2;
+    if (parseInt(captchaAnswer) !== expectedAnswer) {
+      alert("Incorrect security answer. Please try again.");
+      regenerateCaptcha();
+      return;
+    }
+
+    // 2. Validate Form Data
     if (!formData.city) {
       alert("Please enter a city.");
       return;
     }
+    if (!formData.sizeSqm || formData.sizeSqm <= 0) {
+      alert("Please enter a valid property area size.");
+      return;
+    }
+
     setLoading(true);
     try {
       const result = await getAppraisal(formData);
@@ -99,7 +129,7 @@ export const AppraisalForm: React.FC<AppraisalFormProps> = ({ onSuccess, setLoad
             <label className="text-sm font-semibold text-slate-700">Area (sqm)</label>
             <input
               type="number"
-              value={formData.sizeSqm}
+              value={formData.sizeSqm || ''}
               onChange={(e) => handleChange('sizeSqm', parseInt(e.target.value) || 0)}
               className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all"
               placeholder="e.g. 50"
@@ -141,6 +171,29 @@ export const AppraisalForm: React.FC<AppraisalFormProps> = ({ onSuccess, setLoad
                 className="w-10 h-10 rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 flex items-center justify-center transition-colors"
               >+</button>
             </div>
+          </div>
+        </div>
+
+        {/* Human Verification */}
+        <div className="bg-slate-50 p-5 rounded-xl border border-slate-200">
+          <label className="text-sm font-bold text-slate-700 block mb-3 flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+            Human Verification
+          </label>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+            <p className="text-slate-600 text-sm">
+              Please solve: <span className="font-bold text-slate-800 text-lg mx-1">{captcha.num1} + {captcha.num2} = ?</span>
+            </p>
+            <input
+              type="number"
+              value={captchaAnswer}
+              onChange={(e) => setCaptchaAnswer(e.target.value)}
+              className="w-24 px-4 py-2 rounded-lg border border-slate-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all text-center font-bold text-slate-800"
+              placeholder="?"
+              required
+            />
           </div>
         </div>
 
