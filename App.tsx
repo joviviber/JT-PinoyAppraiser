@@ -33,7 +33,9 @@ function App() {
 
   const handleReset = () => {
     // Reload the application from the base URL to ensure a complete reset
-    window.location.href = import.meta.env.BASE_URL;
+    // Use optional chaining and fallback for safety
+    const baseUrl = import.meta.env?.BASE_URL ?? '/JT-PinoyAppraiser/';
+    window.location.href = baseUrl;
   };
 
   return (
