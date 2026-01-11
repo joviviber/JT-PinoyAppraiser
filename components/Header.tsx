@@ -17,7 +17,7 @@ export const Header: React.FC<HeaderProps> = ({
     <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <div className="flex items-center gap-2 cursor-pointer" onClick={() => window.location.reload()}>
+          <div className="flex items-center gap-2 cursor-pointer" onClick={() => window.location.href = import.meta.env.BASE_URL}>
             <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-lg">P</span>
             </div>

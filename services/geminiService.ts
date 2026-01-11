@@ -77,43 +77,43 @@ const mockNewsItems = [
     title: "Metro Manila Residential Market Stable in Q4",
     summary: "Property values in key business districts have maintained stability despite global economic shifts, with luxury segments leading the growth.",
     source: "Real Estate PH",
-    url: "#"
+    url: "https://www.google.com/search?q=Metro+Manila+Residential+Market+Stable"
   },
   {
     title: "Infrastructure Projects Driving Provincial Growth",
     summary: "New expressways and railway projects are boosting land values in Pampanga, Cavite, and Laguna areas.",
     source: "BusinessWorld",
-    url: "#"
+    url: "https://www.google.com/search?q=Philippines+Infrastructure+Projects+Real+Estate+Growth"
   },
   {
     title: "Demand for Green Buildings on the Rise",
     summary: "Tenants and investors are increasingly prioritizing sustainability-certified buildings, commanding higher rental yields.",
     source: "Inquirer Property",
-    url: "#"
+    url: "https://www.google.com/search?q=Green+Buildings+Demand+Philippines"
   },
   {
     title: "BPO Sector Fuels Office Space Recovery",
     summary: "Renewed leasing activity from IT-BPM companies is reducing vacancy rates in PEZA-accredited zones.",
     source: "Colliers PH",
-    url: "#"
+    url: "https://www.google.com/search?q=BPO+Sector+Office+Space+Recovery+Philippines"
   },
   {
     title: "Tourism Rebound Boosts Hotel & Resort Investments",
     summary: "Increased tourist arrivals are encouraging developers to expand leisure portfolios in Cebu and Palawan.",
     source: "PhilStar",
-    url: "#"
+    url: "https://www.google.com/search?q=Tourism+Boosts+Hotel+Resort+Investments+Philippines"
   },
   {
     title: "Mid-Income Segment Dominates Housing Loan Takeout",
     summary: "Banks report a surge in housing loans for mid-market condominium units and house-and-lot packages.",
     source: "Manila Bulletin",
-    url: "#"
+    url: "https://www.google.com/search?q=Mid-Income+Housing+Loan+Takeout+Philippines"
   },
   {
     title: "REITs Provide Stable Outlook for Property Investors",
     summary: "Real Estate Investment Trusts continue to offer attractive dividend yields amidst market volatility.",
     source: "DOF News",
-    url: "#"
+    url: "https://www.google.com/search?q=REITs+Philippines+Outlook"
   }
 ];
 
