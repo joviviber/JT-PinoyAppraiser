@@ -1,12 +1,10 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import { defineConfig } from 'vite'
+import react from '@vitejs/react-swc'
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  // IMPORTANT: The base path must match your GitHub repository name exactly.
-  // This ensures assets are loaded from /JT-PinoyAppraiser/assets/ instead of /assets/
-  base: '/JT-PinoyAppraiser/',
+  base: '/JT-PinoyAppraiser/', // MUST match your repo name exactly
+})
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
