@@ -25,28 +25,28 @@ export const Header: React.FC<HeaderProps> = ({
               PinoyAppraiser
             </span>
           </div>
-          <nav className="hidden md:flex space-x-8">
+          <nav className="hidden md:flex items-center gap-1">
             <button 
               onClick={onOpenHowItWorks} 
-              className="text-slate-600 hover:text-blue-600 font-medium transition-colors bg-transparent border-none cursor-pointer"
+              className="px-4 py-2 rounded-full text-slate-600 font-medium transition-all border border-transparent hover:border-blue-600 hover:text-blue-600 hover:bg-blue-50"
             >
               How it works
             </button>
             <button 
               onClick={onOpenMarketTrends} 
-              className="text-slate-600 hover:text-blue-600 font-medium transition-colors bg-transparent border-none cursor-pointer"
+              className="px-4 py-2 rounded-full text-slate-600 font-medium transition-all border border-transparent hover:border-blue-600 hover:text-blue-600 hover:bg-blue-50"
             >
               Market Trends
             </button>
             <button 
               onClick={onOpenPriceHeatmaps} 
-              className="text-slate-600 hover:text-blue-600 font-medium transition-colors bg-transparent border-none cursor-pointer"
+              className="px-4 py-2 rounded-full text-slate-600 font-medium transition-all border border-transparent hover:border-blue-600 hover:text-blue-600 hover:bg-blue-50"
             >
               Price Heatmaps
             </button>
             <button 
               onClick={onOpenAbout} 
-              className="text-slate-600 hover:text-blue-600 font-medium transition-colors bg-transparent border-none cursor-pointer"
+              className="px-4 py-2 rounded-full text-slate-600 font-medium transition-all border border-transparent hover:border-blue-600 hover:text-blue-600 hover:bg-blue-50"
             >
               About
             </button>

@@ -28,7 +28,10 @@ export const TermsModal: React.FC<TermsModalProps> = ({ isOpen, onClose }) => {
           <p className="text-xs text-slate-400">Last Updated: {new Date().toLocaleDateString()}</p>
           
           <h3 className="text-base font-bold text-slate-900 mt-4">1. Acceptance of Terms</h3>
-          <p>By accessing and using PinoyAppraiser ("the Service"), you accept and agree to be bound by the terms and provision of this agreement.</p>
+          <p>
+            By accessing or using PinoyAppraiser ("the Service"), you automatically accept and agree to be bound by the terms and provisions of this agreement the moment this website is used. 
+            You expressly agree that your use of this Service is strictly limited to <strong>personal use and informational purposes only</strong>.
+          </p>
 
           <h3 className="text-base font-bold text-slate-900 mt-4">2. Description of Service</h3>
           <p>PinoyAppraiser is an AI-powered tool designed to provide estimated market values for real estate properties in the Philippines. The Service utilizes Google Gemini API to analyze data. You acknowledge that these valuations are automated estimates and <strong>do not constitute professional appraisal reports</strong>.</p>

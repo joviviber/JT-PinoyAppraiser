@@ -66,14 +66,19 @@ function App() {
               <div className="grid lg:grid-cols-2 gap-12 items-center">
                 {/* Hero Text */}
                 <div className="space-y-8 animate-slide-in-left">
-                  <div className="inline-flex items-center px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-xs font-bold uppercase tracking-wide">
-                    beta release 1.0
+                  <div className="flex flex-wrap gap-3">
+                    <div className="inline-flex items-center px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-xs font-bold uppercase tracking-wide">
+                      beta release 1.0
+                    </div>
+                    <div className="inline-flex items-center px-3 py-1 rounded-full bg-red-100 text-red-700 text-xs font-bold uppercase tracking-wide">
+                      ALWAYS CONSULT A PRC LICENSED REAL ESTATE APPRAISER
+                    </div>
                   </div>
                   <h1 className="text-4xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.1]">
                     Know the true value of your <span className="text-blue-600">Property.</span>
                   </h1>
                   <p className="text-lg text-slate-600 max-w-lg leading-relaxed">
-                    PinoyAppraiser uses advanced AI to analyze Philippine real estate trends and give you an instant, data-backed valuation estimate for your home or investment.
+                    PinoyAppraiser leverages advanced AI to analyze Philippine real estate trends and provide instant valuation estimates. As these results are artificially processed without direct human supervision, they are intended strictly for initial reference and informational insight only.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4 text-sm text-slate-500">
                     <div className="flex items-center gap-2">
