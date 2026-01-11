@@ -1,6 +1,7 @@
 import React from 'react';
 import { AppraisalResult, PropertyDetails } from '../types';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { AdWrapper } from './AdWrapper';
 
 interface ValuationResultProps {
   data: AppraisalResult;
@@ -36,7 +37,7 @@ export const ValuationResult: React.FC<ValuationResultProps> = ({ data, input, o
               <span className="text-4xl md:text-5xl font-bold text-blue-400">{formatCurrency(data.maxPrice)}</span>
             </div>
             <p className="mt-2 text-slate-400 text-sm">
-              {input.propertyType} • {input.location} • {input.sizeSqm} sqm
+              {input.propertyType} • {input.buildingName ? `${input.buildingName}, ` : ''}{input.city} • {input.sizeSqm} sqm
             </p>
           </div>
         </div>
@@ -116,6 +117,11 @@ export const ValuationResult: React.FC<ValuationResultProps> = ({ data, input, o
                     </li>
                   ))}
                 </ul>
+              </div>
+
+              {/* Ad Placement in Sidebar */}
+              <div className="mt-6">
+                <AdWrapper />
               </div>
 
               <div className="mt-6">

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PropertyDetails, PHILIPPINE_LOCATIONS, PROPERTY_TYPES, FURNISHING_TYPES } from '../types';
+import { PropertyDetails, PROPERTY_TYPES } from '../types';
 import { getAppraisal } from '../services/geminiService';
 
 interface AppraisalFormProps {
@@ -9,12 +9,12 @@ interface AppraisalFormProps {
 
 export const AppraisalForm: React.FC<AppraisalFormProps> = ({ onSuccess, setLoading }) => {
   const [formData, setFormData] = useState<PropertyDetails>({
-    location: PHILIPPINE_LOCATIONS[0],
+    city: "",
+    buildingName: "",
     propertyType: PROPERTY_TYPES[0],
     sizeSqm: 50,
-    bedrooms: 1,
-    bathrooms: 1,
-    furnishing: FURNISHING_TYPES[1]
+    bedrooms: 0,
+    bathrooms: 0
   });
 
   const handleChange = (field: keyof PropertyDetails, value: string | number) => {
@@ -23,6 +23,10 @@ export const AppraisalForm: React.FC<AppraisalFormProps> = ({ onSuccess, setLoad
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!formData.city) {
+      alert("Please enter a city.");
+      return;
+    }
     setLoading(true);
     try {
       const result = await getAppraisal(formData);
@@ -44,25 +48,29 @@ export const AppraisalForm: React.FC<AppraisalFormProps> = ({ onSuccess, setLoad
 
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Location */}
+          {/* City */}
           <div className="space-y-2">
-            <label className="text-sm font-semibold text-slate-700">Location</label>
-            <div className="relative">
-              <select
-                value={formData.location}
-                onChange={(e) => handleChange('location', e.target.value)}
-                className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all appearance-none bg-white"
-              >
-                {PHILIPPINE_LOCATIONS.map(loc => (
-                  <option key={loc} value={loc}>{loc}</option>
-                ))}
-              </select>
-              <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </div>
-            </div>
+            <label className="text-sm font-semibold text-slate-700">City</label>
+            <input
+              type="text"
+              value={formData.city}
+              onChange={(e) => handleChange('city', e.target.value)}
+              className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all"
+              placeholder="e.g. Makati, Taguig, Cebu City"
+              required
+            />
+          </div>
+
+          {/* Building or Subdivision */}
+          <div className="space-y-2">
+            <label className="text-sm font-semibold text-slate-700">Building/Subdivision</label>
+            <input
+              type="text"
+              value={formData.buildingName}
+              onChange={(e) => handleChange('buildingName', e.target.value)}
+              className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all"
+              placeholder="e.g. Jazz Residences, Serendra"
+            />
           </div>
 
           {/* Property Type */}
@@ -88,7 +96,7 @@ export const AppraisalForm: React.FC<AppraisalFormProps> = ({ onSuccess, setLoad
 
           {/* Size */}
           <div className="space-y-2">
-            <label className="text-sm font-semibold text-slate-700">Floor Area (sqm)</label>
+            <label className="text-sm font-semibold text-slate-700">Area (sqm)</label>
             <input
               type="number"
               value={formData.sizeSqm}
@@ -97,27 +105,6 @@ export const AppraisalForm: React.FC<AppraisalFormProps> = ({ onSuccess, setLoad
               placeholder="e.g. 50"
               min="10"
             />
-          </div>
-
-          {/* Furnishing */}
-          <div className="space-y-2">
-            <label className="text-sm font-semibold text-slate-700">Furnishing</label>
-            <div className="relative">
-              <select
-                value={formData.furnishing}
-                onChange={(e) => handleChange('furnishing', e.target.value)}
-                className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all appearance-none bg-white"
-              >
-                {FURNISHING_TYPES.map(f => (
-                  <option key={f} value={f}>{f}</option>
-                ))}
-              </select>
-              <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </div>
-            </div>
           </div>
         </div>
 

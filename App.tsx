@@ -2,12 +2,27 @@ import React, { useState } from 'react';
 import { Header } from './components/Header';
 import { AppraisalForm } from './components/AppraisalForm';
 import { ValuationResult } from './components/ValuationResult';
+import { PrivacyModal } from './components/PrivacyModal';
+import { HowItWorksModal } from './components/HowItWorksModal';
+import { MarketTrendsModal } from './components/MarketTrendsModal';
+import { PriceHeatmapsModal } from './components/PriceHeatmapsModal';
+import { AboutModal } from './components/AboutModal';
+import { TermsModal } from './components/TermsModal';
+import { DisclaimerModal } from './components/DisclaimerModal';
+import { AdWrapper } from './components/AdWrapper';
 import { AppraisalResult, PropertyDetails } from './types';
 
 function App() {
   const [result, setResult] = useState<AppraisalResult | null>(null);
   const [inputData, setInputData] = useState<PropertyDetails | null>(null);
   const [loading, setLoading] = useState(false);
+  const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
+  const [isHowItWorksOpen, setIsHowItWorksOpen] = useState(false);
+  const [isMarketTrendsOpen, setIsMarketTrendsOpen] = useState(false);
+  const [isPriceHeatmapsOpen, setIsPriceHeatmapsOpen] = useState(false);
+  const [isAboutOpen, setIsAboutOpen] = useState(false);
+  const [isTermsOpen, setIsTermsOpen] = useState(false);
+  const [isDisclaimerOpen, setIsDisclaimerOpen] = useState(false);
 
   const handleSuccess = (res: AppraisalResult, details: PropertyDetails) => {
     setResult(res);
@@ -24,7 +39,12 @@ function App() {
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col font-sans text-slate-900">
-      <Header />
+      <Header 
+        onOpenHowItWorks={() => setIsHowItWorksOpen(true)} 
+        onOpenMarketTrends={() => setIsMarketTrendsOpen(true)}
+        onOpenPriceHeatmaps={() => setIsPriceHeatmapsOpen(true)}
+        onOpenAbout={() => setIsAboutOpen(true)}
+      />
 
       <main className="flex-grow">
         {/* Loading Overlay */}
@@ -42,39 +62,46 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           
           {!result ? (
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              {/* Hero Text */}
-              <div className="space-y-8 animate-slide-in-left">
-                <div className="inline-flex items-center px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-xs font-bold uppercase tracking-wide">
-                  beta release 1.0
+            <>
+              <div className="grid lg:grid-cols-2 gap-12 items-center">
+                {/* Hero Text */}
+                <div className="space-y-8 animate-slide-in-left">
+                  <div className="inline-flex items-center px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-xs font-bold uppercase tracking-wide">
+                    beta release 1.0
+                  </div>
+                  <h1 className="text-4xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.1]">
+                    Know the true value of your <span className="text-blue-600">Property.</span>
+                  </h1>
+                  <p className="text-lg text-slate-600 max-w-lg leading-relaxed">
+                    PinoyAppraiser uses advanced AI to analyze Philippine real estate trends and give you an instant, data-backed valuation estimate for your home or investment.
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-4 text-sm text-slate-500">
+                    <div className="flex items-center gap-2">
+                      <svg className="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
+                      <span>Instant Results</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <svg className="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
+                      <span>Market Analysis</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <svg className="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
+                      <span>Philippine Data</span>
+                    </div>
+                  </div>
                 </div>
-                <h1 className="text-4xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.1]">
-                  Know the true value of your <span className="text-blue-600">Property.</span>
-                </h1>
-                <p className="text-lg text-slate-600 max-w-lg leading-relaxed">
-                  PinoyAppraiser uses advanced AI to analyze Philippine real estate trends and give you an instant, data-backed valuation estimate for your home or investment.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 text-sm text-slate-500">
-                  <div className="flex items-center gap-2">
-                    <svg className="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
-                    <span>Instant Results</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <svg className="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
-                    <span>Market Analysis</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <svg className="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
-                    <span>Philippine Data</span>
-                  </div>
-                </div>
-              </div>
 
-              {/* Form Section */}
-              <div className="w-full max-w-md mx-auto lg:ml-auto">
-                <AppraisalForm onSuccess={handleSuccess} setLoading={setLoading} />
+                {/* Form Section */}
+                <div className="w-full max-w-md mx-auto lg:ml-auto">
+                  <AppraisalForm onSuccess={handleSuccess} setLoading={setLoading} />
+                </div>
               </div>
-            </div>
+              
+              {/* Ad Placement - Below Fold for Home */}
+              <div className="mt-16">
+                 <AdWrapper />
+              </div>
+            </>
           ) : (
             <ValuationResult 
               data={result} 
@@ -97,17 +124,17 @@ function App() {
           <div>
             <h4 className="text-white font-semibold mb-4">Features</h4>
             <ul className="space-y-2 text-sm">
-              <li><a href="#" className="hover:text-white">Valuation Calculator</a></li>
-              <li><a href="#" className="hover:text-white">Market Trends</a></li>
-              <li><a href="#" className="hover:text-white">Price Heatmaps</a></li>
+              <li><button onClick={() => setIsHowItWorksOpen(true)} className="hover:text-white text-left">Valuation Calculator</button></li>
+              <li><button onClick={() => setIsMarketTrendsOpen(true)} className="hover:text-white text-left">Market Trends</button></li>
+              <li><button onClick={() => setIsPriceHeatmapsOpen(true)} className="hover:text-white text-left">Price Heatmaps</button></li>
             </ul>
           </div>
           <div>
              <h4 className="text-white font-semibold mb-4">Legal</h4>
             <ul className="space-y-2 text-sm">
-              <li><a href="#" className="hover:text-white">Privacy Policy</a></li>
-              <li><a href="#" className="hover:text-white">Terms of Service</a></li>
-              <li><a href="#" className="hover:text-white">Disclaimer</a></li>
+              <li><button onClick={() => setIsPrivacyOpen(true)} className="hover:text-white text-left">Privacy Policy</button></li>
+              <li><button onClick={() => setIsTermsOpen(true)} className="hover:text-white text-left">Terms of Service</button></li>
+              <li><button onClick={() => setIsDisclaimerOpen(true)} className="hover:text-white text-left">Disclaimer</button></li>
             </ul>
           </div>
         </div>
@@ -115,6 +142,14 @@ function App() {
           &copy; {new Date().getFullYear()} PinoyAppraiser. All rights reserved.
         </div>
       </footer>
+
+      <PrivacyModal isOpen={isPrivacyOpen} onClose={() => setIsPrivacyOpen(false)} />
+      <HowItWorksModal isOpen={isHowItWorksOpen} onClose={() => setIsHowItWorksOpen(false)} />
+      <MarketTrendsModal isOpen={isMarketTrendsOpen} onClose={() => setIsMarketTrendsOpen(false)} />
+      <PriceHeatmapsModal isOpen={isPriceHeatmapsOpen} onClose={() => setIsPriceHeatmapsOpen(false)} />
+      <AboutModal isOpen={isAboutOpen} onClose={() => setIsAboutOpen(false)} />
+      <TermsModal isOpen={isTermsOpen} onClose={() => setIsTermsOpen(false)} />
+      <DisclaimerModal isOpen={isDisclaimerOpen} onClose={() => setIsDisclaimerOpen(false)} />
     </div>
   );
 }

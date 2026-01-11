@@ -1,10 +1,10 @@
 export interface PropertyDetails {
-  location: string;
+  city: string;
+  buildingName: string;
   propertyType: string;
   sizeSqm: number;
   bedrooms: number;
   bathrooms: number;
-  furnishing: string;
 }
 
 export interface PriceTrendPoint {
@@ -22,23 +22,32 @@ export interface AppraisalResult {
   comparableHighlights: string[];
 }
 
-export const PHILIPPINE_LOCATIONS = [
-  "Makati CBD",
-  "Bonifacio Global City (BGC)",
-  "Ortigas Center",
-  "Quezon City",
-  "Mandaluyong",
-  "Pasig",
-  "Manila",
-  "Alabang",
-  "Parañaque",
-  "Pasay",
-  "Cebu City",
-  "Davao City",
-  "Tagaytay",
-  "Nuvali / Sta. Rosa",
-  "Clark / Pampanga"
-];
+export interface NewsItem {
+  title: string;
+  summary: string;
+  source: string;
+  url: string;
+}
+
+export interface MarketTrendsData {
+  date: string;
+  items: NewsItem[];
+}
+
+export interface HeatmapZone {
+  areaName: string;
+  avgPriceSqm: number;
+  priceLevel: 'Budget' | 'Mid-End' | 'High-End' | 'Luxury';
+  description: string;
+  growthRate: string;
+}
+
+export interface HeatmapData {
+  location: string;
+  lastUpdated: string;
+  zones: HeatmapZone[];
+  summary: string;
+}
 
 export const PROPERTY_TYPES = [
   "Condominium Unit",
@@ -49,8 +58,18 @@ export const PROPERTY_TYPES = [
   "Beach Property"
 ];
 
-export const FURNISHING_TYPES = [
-  "Unfurnished",
-  "Semi-Furnished",
-  "Fully Furnished"
+export const HEATMAP_LOCATIONS = [
+  "Makati City",
+  "Bonifacio Global City",
+  "Manila Bay Area",
+  "Pasay City",
+  "Quezon City",
+  "Ortigas Center",
+  "Clark and Pampanga",
+  "Nuvali / Sta. Rosa",
+  "Alabang",
+  "Cebu City",
+  "Davao City",
+  "Palawan",
+  "Siargao"
 ];

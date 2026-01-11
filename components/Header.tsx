@@ -1,6 +1,18 @@
 import React from 'react';
 
-export const Header: React.FC = () => {
+interface HeaderProps {
+  onOpenHowItWorks: () => void;
+  onOpenMarketTrends: () => void;
+  onOpenPriceHeatmaps: () => void;
+  onOpenAbout: () => void;
+}
+
+export const Header: React.FC<HeaderProps> = ({ 
+  onOpenHowItWorks, 
+  onOpenMarketTrends, 
+  onOpenPriceHeatmaps,
+  onOpenAbout 
+}) => {
   return (
     <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -14,13 +26,37 @@ export const Header: React.FC = () => {
             </span>
           </div>
           <nav className="hidden md:flex space-x-8">
-            <a href="#" className="text-slate-600 hover:text-blue-600 font-medium transition-colors">How it works</a>
-            <a href="#" className="text-slate-600 hover:text-blue-600 font-medium transition-colors">Market Trends</a>
-            <a href="#" className="text-slate-600 hover:text-blue-600 font-medium transition-colors">About</a>
+            <button 
+              onClick={onOpenHowItWorks} 
+              className="text-slate-600 hover:text-blue-600 font-medium transition-colors bg-transparent border-none cursor-pointer"
+            >
+              How it works
+            </button>
+            <button 
+              onClick={onOpenMarketTrends} 
+              className="text-slate-600 hover:text-blue-600 font-medium transition-colors bg-transparent border-none cursor-pointer"
+            >
+              Market Trends
+            </button>
+            <button 
+              onClick={onOpenPriceHeatmaps} 
+              className="text-slate-600 hover:text-blue-600 font-medium transition-colors bg-transparent border-none cursor-pointer"
+            >
+              Price Heatmaps
+            </button>
+            <button 
+              onClick={onOpenAbout} 
+              className="text-slate-600 hover:text-blue-600 font-medium transition-colors bg-transparent border-none cursor-pointer"
+            >
+              About
+            </button>
           </nav>
-          <button className="bg-slate-900 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-slate-800 transition-colors">
+          <a 
+            href="mailto:pinoyappraiser+info@gmail.com?subject=Agent Inquiry" 
+            className="bg-slate-900 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-slate-800 transition-colors"
+          >
             Contact Agent
-          </button>
+          </a>
         </div>
       </div>
     </header>
